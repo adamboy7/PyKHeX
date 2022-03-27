@@ -14,7 +14,6 @@ PID_Search, returns an array of pokemon information based on provided arguments,
 PID_Search(**PID**, gender, ability, nature, gender_Ratio, shiny, letter, wurmple, mirage, generation)
 ```
 print (PID_Search("F0700EDA"))
-
 #Output: (True, ('f0700eda', 'Male', 0, 'quirky', 15389, 'K', 'silcoon', 3802, 'GEAM', 1794549825))
 ```
 
@@ -24,7 +23,6 @@ pk3_Info(**pokemon**, **pokemon_ID**, OT_Name, trainer_ID, trainer_SID, language
 
 ```
 print (pk3_Info("Torchic", "F0700EDA"))
-
 #Output: DA0E70F041A8F66ACEC9CCBDC2C3BDFFFFFF0202BBD8D5E1FFFFFF00CHCK0000
 ```
 
