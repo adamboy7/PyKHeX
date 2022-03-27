@@ -9,6 +9,15 @@ Various tools and libraries to generate each "GAEM" substructure of a given poke
 # Examples
 *Required arguments in bold*
 
+PID_Search, returns an array of pokemon information based on provided arguments, also returns true or false if the PID matches the supplied arguments:
+
+PID_Search(**PID**, gender, ability, nature, gender_Ratio, shiny, letter, wurmple, mirage, generation)
+```
+print (PID_Search("F0700EDA"))
+
+#Output: (True, ('f0700eda', 'Male', 0, 'quirky', 15389, 'K', 'silcoon', 3802, 'GEAM', 1794549825))
+```
+
 pk3_Info, returns the first 32 bytes of a pokemon data structure based on the provided arguments and information entered in "config.txt" if things like name, trainer ID, and trainer Secret ID are not specified. **Checksum not yet implimented**:
 
 pk3_Info(**pokemon**, **pokemon_ID**, OT_Name, trainer_ID, trainer_SID, language, nickname, circle, square, triangle, heart)
