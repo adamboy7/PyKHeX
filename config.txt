@@ -1,0 +1,4 @@
+Name = Adam
+Trainer ID = 43073
+Secret ID = 27382
+Trainer Gender = Male
