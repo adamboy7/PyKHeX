@@ -58,10 +58,25 @@ substruct_M(PID, Pokerus_days, Pokerus_strain, location, OT_gender, pokeball, ga
 print (substruct_M("F0700EDA", game = "Emerald", location = "Victory Road"))
 ```
 
-translate, take an input string and output encoded text:
+translate, take an input string and returns encoded text:
 
 translate(**string**, byte_Length, language, smart_Character)
 ```
 print (translate("Hello world!"))
 #Output: C2D9E0E0E300EBE3E6E0D8AB
 ```
+
+dex_Search, returns a pokemon's name and encoded species number:
+
+dex_Search(**ID**, Internal_or_National, return_Upper)
+```
+print (dex_Search(255))
+#Output: ('Torchic', 'FF00')
+```
+
+item_Search, returns an item's encoded ID,
+
+item_search(ID, Generation)
+```
+print (item_Search("Potion"))
+#Output: 0D00
