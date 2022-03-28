@@ -57,3 +57,11 @@ substruct_M(PID, Pokerus_days, Pokerus_strain, location, OT_gender, pokeball, ga
 ```
 print (substruct_M("F0700EDA", game = "Emerald", location = "Victory Road"))
 ```
+
+translate, take an input string and output encoded text:
+
+translate(string, byte_Length, language, smart_Character)
+```
+print (translate("Hello world!"))
+#Output: C2D9E0E0E300EBE3E6E0D8AB
+```
