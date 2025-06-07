@@ -2,19 +2,39 @@ import random
 from PID_Search import PID_Search
 
 accepted_pokeballs = {
-"master":1
-"ultra":2
-"great":3
+    "master": 1,
+    "ultra": 2,
+    "great": 3,
 }
 
-def substruct_M(PID, Pokerus_days, Pokerus_strain, location, OT_gender, pokeball = 3, Game, Level_met, HP = None, Attack = None, Defense = None, Speed = None, Special_Attack = None, Special_Defence = None, egg = False, ability = None, ribbons = None, obedience = 0):
+def substruct_M(
+    PID,
+    Pokerus_days,
+    Pokerus_strain,
+    location,
+    OT_gender,
+    Game,
+    Level_met,
+    pokeball=3,
+    HP=None,
+    Attack=None,
+    Defense=None,
+    Speed=None,
+    Special_Attack=None,
+    Special_Defence=None,
+    egg=False,
+    ability=None,
+    ribbons=None,
+    obedience=0,
+):
     error = 0
-    if pokeball not <= 12 and not >= 1:
-        print ("Invalid \"pokeball\" int:", pokemon, "Expected 1 -> 12")
+    if pokeball > 12 or pokeball < 1:
+        print ("Invalid \"pokeball\" int:", pokeball, "Expected 1 -> 12")
         error = 1
     if type(egg) != bool:
         print ("Invalid \"egg\" bool:", egg)
-    if type(ribbons) != None and type(ribbons) != int:
+        error = 1
+    if ribbons is not None and type(ribbons) != int:
         print ("Invalid \"ribbons\" int:", ribbons)
         error = 1
     if error == 1:

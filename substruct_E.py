@@ -34,7 +34,7 @@ def substruct_E(HP = 0, Attack = 0, Defense = 0, Speed = 0, Special_Attack = 0, 
     if type(Smartness) == int and Smartness > 255 or type(Smartness) == int and Smartness < 0:
         error = 1
         print ("Invalid \"Smartness\" int, 0 -> 255")
-    if type(Toughness) == int and Toughness > 255 or type(HP) == Toughness and Toughness < 0:
+    if type(Toughness) == int and Toughness > 255 or type(Toughness) == int and Toughness < 0:
         error = 1
         print ("Invalid \"Toughness\" int, 0 -> 255")
     if type(Feel) == int and Feel > 255 or type(Feel) == int and Feel < 0:
