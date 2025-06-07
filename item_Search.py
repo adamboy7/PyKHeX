@@ -7,13 +7,14 @@ def item_Search(ID, generation = 3):
     if ID == None:
         ID = "none"
     if type(ID) != str and type(ID) != int:
-        print ("Invalid \"item\" str/int:", item)
+        print ("Invalid \"item\" str/int:", ID)
         error = 1
     if generation not in generations_List:
         print ("Invalid generation int/str:", generation)
         error = 1
     if error == 1:
         print ("Input: item_Search(" + str(ID) + ", " + str(generation) + ")")
+        return None
     try:
         if generation == 1 or generation == "I":
             print ("Unfinished generation item list:", generation)

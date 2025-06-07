@@ -2,7 +2,7 @@
 from Dictionaries.international_Characterset import *
 from Dictionaries.japanese_Characterset import *
 
-international_Strings = ["international", "english", "0202", "french" "0203", "italian", "0204", "german", "0205", "spanish", "0207"]
+international_Strings = ["international", "english", "0202", "french", "0203", "italian", "0204", "german", "0205", "spanish", "0207"]
 japanese_Strings = ["japanese", "0201"]
 
 def translate(string, byte_Length = None, language = "International", smart_Character = True):

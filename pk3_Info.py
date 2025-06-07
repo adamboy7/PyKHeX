@@ -2,7 +2,7 @@ from dex_Search import dex_Search
 from PID_Search import PID_Search
 from translate import translate
 
-accepted_languages = ["international", "english", "0202", "french" "0203", "italian", "0204", "german", "0205", "spanish", "0207", "japanese", "0201"]
+accepted_languages = ["international", "english", "0202", "french", "0203", "italian", "0204", "german", "0205", "spanish", "0207", "japanese", "0201"]
 
 def pk3_Info(pokemon, pokemon_ID, OT_Name = None, trainer_ID = None, trainer_SID = None, language = "0202", nickname = None, circle = False, square = False, triangle = False, heart = False):
     # - - - Sanitize inputs - - -
