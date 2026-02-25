@@ -7,10 +7,11 @@ accepted_languages = ["international", "english", "0202", "french", "0203", "ita
 def pk3_Info(pokemon, pokemon_ID, OT_Name = None, trainer_ID = None, trainer_SID = None, language = "0202", nickname = None, circle = False, square = False, triangle = False, heart = False):
     # - - - Sanitize inputs - - -
     error = 0
+    PID_Data = PID_Search(pokemon_ID)
     if dex_Search(pokemon) == None:
         print ("Invalid \"pokemon\" str/int:", pokemon)
         error = 1
-    if (PID_Search(pokemon_ID)[1])[0] == None:
+    if PID_Data == None or (PID_Data[1])[0] == None:
         print ("Invalid \"pokemon_ID\" int/str:", pokemon_ID)
         error = 1
     if OT_Name == None:
@@ -91,7 +92,7 @@ def pk3_Info(pokemon, pokemon_ID, OT_Name = None, trainer_ID = None, trainer_SID
         return None
     # - - - Done sanitizing inputs - - -
     PID_Little = str()
-    for PID_Byte in (int((PID_Search(pokemon_ID)[1])[0], 16).to_bytes(4, 'little')):
+    for PID_Byte in (int((PID_Data[1])[0], 16).to_bytes(4, 'little')):
         PID_Little = PID_Little + hex(PID_Byte)[2:].zfill(2)
     TID_Full = hex(trainer_SID)[2:] + hex(trainer_ID)[2:]
     TID_Little = str()
