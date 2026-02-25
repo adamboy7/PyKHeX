@@ -7,11 +7,11 @@ data_Structures = ["GAEM", "GAME", "GEAM", "GEMA", "GMAE", "GMEA", "AGEM", "AGME
 
 generations_List = [1, "I", 2, "II", 3, "III", 4, "IV", 5, "V", 6, "VI", 7, "VII", 8, "VIII"]
 
-generation_Gender_Calc = [3, "III", 4, "IV", 5, "IV"]
-generation_Ability_Calc = [3, "III", 4, "IV", 5, "IV"]
+generation_Gender_Calc = [3, "III", 4, "IV", 5, "V"]
+generation_Ability_Calc = [3, "III", 4, "IV", 5, "V"]
 generation_Nature_Calc = [3, "III", 4, "IV"]
 generation_Letter_Calc = [3, "III"]
-generation_Wurmple_Calc = [3, "III", 4, "IV", 5, "IV"]
+generation_Wurmple_Calc = [3, "III", 4, "IV", 5, "V"]
 generation_Mirage_Calc = [3, "III"]
 
 # Returns: (Filter True/False), PID, Gender, Ability Slot, Nature, Shiny XOR, Letter, Wurmple Evolution, Mirage Number, Substrugture Order, Encryption key
