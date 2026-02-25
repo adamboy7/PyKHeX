@@ -45,7 +45,7 @@ def substruct_A(attack1, attack1_PP = 0, attack2 = None, attack2_PP = 0, attack3
     if attack3 != None and attack3 not in attack_Dict:
         print ("Invalid attack 3:", attack3)
         error = 1
-    if attack4 != None and attack1 not in attack_Dict:
+    if attack4 != None and attack4 not in attack_Dict:
         print ("Invalid attack 4:", attack4)
         error = 1
     if error == 1:
