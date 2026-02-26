@@ -98,15 +98,16 @@ def pk3_Info(pokemon, pokemon_ID, OT_Name = None, trainer_ID = None, trainer_SID
     TID_Little = str()
     for TID_Byte in (int(TID_Full, 16).to_bytes(4, 'little')):
         TID_Little = TID_Little + hex(TID_Byte)[2:].zfill(2)
+    # Gen 3 mark bits: circle=bit0, triangle=bit1, square=bit2, heart=bit3
     markings = 0
     if circle == True:
-        markings = markings + 0
-    if square == True:
-        markings = markings + 0
+        markings |= 0x1
     if triangle == True:
-        markings = markings + 0
+        markings |= 0x2
+    if square == True:
+        markings |= 0x4
     if heart == True:
-        markings = markings + 0
+        markings |= 0x8
     if nickname == None:
         return (PID_Little.upper() + TID_Little.upper() + translate(dex_Search(pokemon, return_Upper = True)[0], 10, language).upper() + language.upper() + translate(OT_Name, 7, language).upper() + hex(markings)[2:].zfill(2).upper() + "CHCK" + "0000".upper())
     if nickname != None:
