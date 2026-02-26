@@ -57,21 +57,22 @@ def pk3_Info(pokemon, pokemon_ID, OT_Name = None, trainer_ID = None, trainer_SID
         error = 1
     if trainer_SID != None and type(trainer_SID) != int:
         print ("Invalid \"trainer_SID\" int:", trainer_ID)
-    if language.lower() not in accepted_languages:
+    lang = language.lower()
+    if lang not in accepted_languages:
         print ("Invalid \"language\" string:", language)
         error = 1
-    if language.lower() == "japanese":
+    if lang == "japanese":
         language = "0201"
-    if language.lower() == "international" or language == "english":
+    if lang == "international" or lang == "english":
         language = "0202"
-    if language.lower() == "french":
+    if lang == "french":
         language = "0203"
-    if language.lower() == "italian":
+    if lang == "italian":
         language = "0204"
-    if language.lower() == "german":
+    if lang == "german":
         language = "0205"
-    if language.lower() == "spanish":
-            language = "0207"
+    if lang == "spanish":
+        language = "0207"
     if nickname != None and translate(nickname) == None:
         print("Invalid \"nickname\" str:", nickname)
         error = 1
