@@ -36,7 +36,6 @@ def translate(string, byte_Length = None, language = "International", smart_Char
                     string_Hex = string_Hex + character_Encoding_International["▯"]
                     continue
                 string_Hex = string_Hex + character_Encoding_International_Special[string[(string_Position - 1):(string_Position + 2)]]
-                print (string[(string_Position - 1):(string_Position + 2)])
                 continue
             if string_Position >= 1 and string[(string_Position - 1)] == "*" or string_Position >= 2 and string[(string_Position - 2)] == "*":
                 string_Position = string_Position + 1
@@ -76,7 +75,6 @@ def translate(string, byte_Length = None, language = "International", smart_Char
                     string_Hex = string_Hex + character_Encoding_Japanese[" "]
                     continue
                 string_Hex = string_Hex + character_Encoding_Japanese_Special[string[(string_Position - 1):(string_Position + 2)]]
-                print (string[(string_Position - 1):(string_Position + 2)])
                 continue
             if string_Position >= 1 and string[(string_Position - 1)] == "*" or string_Position >= 2 and string[(string_Position - 2)] == "*":
                 string_Position = string_Position + 1

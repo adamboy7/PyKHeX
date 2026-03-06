@@ -25,16 +25,16 @@ def substruct_A(attack1, attack1_PP = 0, attack2 = None, attack2_PP = 0, attack3
         generation_Dict = generation_Dict + 1
         # End of being stubborn
     if type(attack1_PP) != int or attack1_PP > 255 or attack1_PP < 0:
-        print ("Invalip PP count on attack 1", "\"" + str(attack1_PP) + "\",", "Expected int 0 -> 255")
+        print ("Invalid PP count on attack 1", "\"" + str(attack1_PP) + "\",", "Expected int 0 -> 255")
         error = 1
     if type(attack2_PP) != int or attack2_PP > 255 or attack2_PP < 0:
-        print ("Invalip PP count on attack 2", "\"" + str(attack2_PP) + "\",", "Expected int 0 -> 255")
+        print ("Invalid PP count on attack 2", "\"" + str(attack2_PP) + "\",", "Expected int 0 -> 255")
         error = 1
     if type(attack3_PP) != int or attack3_PP > 255 or attack3_PP < 0:
-        print ("Invalip PP count on attack 3", "\"" + str(attack3_PP) + "\",", "Expected int 0 -> 255")
+        print ("Invalid PP count on attack 3", "\"" + str(attack3_PP) + "\",", "Expected int 0 -> 255")
         error = 1
     if type(attack4_PP) != int or attack4_PP > 255 or attack4_PP < 0:
-        print ("Invalip PP count on attack 4", "\"" + str(attack4_PP) + "\",", "Expected int 0 -> 255")
+        print ("Invalid PP count on attack 4", "\"" + str(attack4_PP) + "\",", "Expected int 0 -> 255")
         error = 1
     if attack1 != None and attack1 not in attack_Dict:
         print ("Invalid attack 1:", attack1)
@@ -52,11 +52,11 @@ def substruct_A(attack1, attack1_PP = 0, attack2 = None, attack2_PP = 0, attack3
         print ("Input: substruct_A(" + str(generation) + ", " + str(attack1) + ", " + str(attack1_PP) + ", " + str(attack2) + ", " + str(attack2_PP) + ", " + str(attack3) + ", " + str(attack3_PP) + ", " +  str(attack4) + ", " + str(attack4_PP) + ")")
         return None
     attack_Slot = 0
-    padding = 0
     while attack_Slot <= 3:
         attack_Slot = attack_Slot + 1
         if vars()["attack" + str(attack_Slot)] == None:
-            padding = padding + 1
+            output_attack = output_attack + "0000"
+            output_PP = output_PP + "00"
             continue
         if type(vars()["attack" + str(attack_Slot)]) == str:
             for item in (attack_Dict[vars()["attack" + str(attack_Slot)]]).to_bytes(2, "little"):
@@ -66,8 +66,4 @@ def substruct_A(attack1, attack1_PP = 0, attack2 = None, attack2_PP = 0, attack3
             for item in (vars()["attack" + str(attack_Slot)]).to_bytes(2, "little"):
                 output_attack = output_attack + (hex(item)[2:].zfill(2))
             output_PP = output_PP + str(hex(vars()["attack" + str(attack_Slot) + "_PP"])[2:].zfill(2))
-    while padding > 0:
-        output_attack = output_attack + "0000"
-        output_PP = output_PP + "00"
-        padding = padding - 1
     return (str(output_attack).upper() + str(output_PP).upper())

@@ -44,11 +44,13 @@ def pk3_Info(pokemon, pokemon_ID, OT_Name = None, trainer_ID = None, trainer_SID
         error = 1
     if trainer_ID != None and type(trainer_ID) != int:
         print ("Invalid \"trainer_ID\" int:", trainer_ID)
+        error = 1
     if trainer_SID == None:
         print ("config.txt requires line: 'Secret ID = #####'")
         error = 1
     if trainer_SID != None and type(trainer_SID) != int:
         print ("Invalid \"trainer_SID\" int:", trainer_SID)
+        error = 1
     lang = language.lower()
     if lang not in accepted_languages:
         print ("Invalid \"language\" string:", language)

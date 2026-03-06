@@ -40,7 +40,7 @@ def substruct_G(pokemon, item = 0, EXP = 0, friendship = 0, PP_Boost = 0, Intern
         print ("Invaid \"Internal_or_National\" str:", Internal_or_National)
         error = 1
     if error == 1:
-        print ("Input: substruct_G(" + str(pokemon) + ", " + str(item) + ", " + str(EXP) + ", " + str(friendship) + ", " + str(PP_Boost) + ", " + str(Internal_or_National) + str(generation) + ")")
+        print ("Input: substruct_G(" + str(pokemon) + ", " + str(item) + ", " + str(EXP) + ", " + str(friendship) + ", " + str(PP_Boost) + ", " + str(Internal_or_National) + ", " + str(generation) + ")")
         return None
     # - - - Done sanitizing inputs - - -
     exp_Little = str()
