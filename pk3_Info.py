@@ -91,13 +91,13 @@ def pk3_Info(pokemon, pokemon_ID, OT_Name = None, trainer_ID = None, trainer_SID
     TID_Little = str()
     for TID_Byte in (int(TID_Full, 16).to_bytes(4, 'little')):
         TID_Little = TID_Little + hex(TID_Byte)[2:].zfill(2)
-    # Gen 3 mark bits: circle=bit0, triangle=bit1, square=bit2, heart=bit3
+    # Gen 3 mark bits: circle=bit0, square=bit1, triangle=bit2, heart=bit3
     markings = 0
     if circle == True:
         markings |= 0x1
-    if triangle == True:
-        markings |= 0x2
     if square == True:
+        markings |= 0x2
+    if triangle == True:
         markings |= 0x4
     if heart == True:
         markings |= 0x8
