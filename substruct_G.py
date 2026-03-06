@@ -35,6 +35,7 @@ def substruct_G(pokemon, item = 0, EXP = 0, friendship = 0, PP_Boost = 0, Intern
         error = 1
     if type(friendship) == int and friendship > 255 or type(friendship) == int and friendship < 0:
         print ("\"friendship\" int out of range 0 -> 255:", friendship)
+        error = 1
     if Internal_or_National.lower() != 'national' and Internal_or_National.lower() != 'internal':
         print ("Invaid \"Internal_or_National\" str:", Internal_or_National)
         error = 1

@@ -85,19 +85,19 @@ def PID_Search(PID, gender = None, ability = None, nature = None, gender_Ratio =
         exit()
     ID = None
     SID = None
-    config = open("config.txt", "r")
-    for line in config:
-        line = line.split("=")
-        if line[0].strip() == "Trainer ID":
-            try:
-                ID = int(line[1].strip())
-            except:
-                print ("Invalid Trainer ID of", line[1].strip())
-        if line[0].strip() == "Secret ID":
-            try:
-                SID = int(line[1].strip())
-            except:
-                print ("Invalid Secret ID of", line[1].strip())
+    with open("config.txt", "r") as config:
+        for line in config:
+            line = line.split("=")
+            if line[0].strip() == "Trainer ID":
+                try:
+                    ID = int(line[1].strip())
+                except:
+                    print ("Invalid Trainer ID of", line[1].strip())
+            if line[0].strip() == "Secret ID":
+                try:
+                    SID = int(line[1].strip())
+                except:
+                    print ("Invalid Secret ID of", line[1].strip())
     if ID == None:
         print ("config.txt requires line: 'Trainer ID = #####'")
     if SID == None:
@@ -106,7 +106,7 @@ def PID_Search(PID, gender = None, ability = None, nature = None, gender_Ratio =
         exit()
     # - - - Done getting trainer ID/SID from config file - - -
     TID_XOR = ID ^ SID
-    TID_Full = hex(SID)[2:] + hex(ID)[2:]
+    TID_Full = hex(SID)[2:].zfill(4) + hex(ID)[2:].zfill(4)
     if gender != None and gender.lower() == "male" and (PID % 256) >= gender_Ratio and gender_Ratio != 255 or gender == None and (PID % 256) >= gender_Ratio and gender_Ratio != 255:
         if ability == (PID % 2) or ability == None:
             if nature != None and nature.lower() == natures_List[(PID % 25)] or nature == None:
@@ -174,7 +174,7 @@ def PID_Search(PID, gender = None, ability = None, nature = None, gender_Ratio =
                             if mirage == PID2 or mirage == None:
                                 return True, (hex(PID)[2:].zfill(8), "Genderless", (PID % 2), natures_List[(PID % 25)], temp_XOR, Unown_Alphabet[Unown_Letter], evolution, PID2, data_Structures[(PID % 24)], (int(TID_Full, 16) % PID))
     # Supplied PID did not match supplied filters, return false + details
-    if (PID % 256) >= gender_Ratio and gender_Ratio != 255 and gender.lower() != "genderless":
+    if (PID % 256) >= gender_Ratio and gender_Ratio != 255 and (gender is None or gender.lower() != "genderless"):
         PID1 = int(bin(PID)[2:].zfill(32)[:16], 2)
         PID2 = int(bin(PID)[2:].zfill(32)[16:], 2)
         PID_XOR = PID1 ^ PID2
@@ -190,7 +190,7 @@ def PID_Search(PID, gender = None, ability = None, nature = None, gender_Ratio =
         if wurmple_Path > 4:
             evolution = "cascoon"
         return False, (hex(PID)[2:].zfill(8), "Male", (PID % 2), natures_List[(PID % 25)], temp_XOR, Unown_Alphabet[Unown_Letter], evolution, PID2, data_Structures[(PID % 24)], (int(TID_Full, 16) % PID))
-    if (PID % 256) < gender_Ratio and gender_Ratio != 255 and gender.lower() != "genderless":
+    if (PID % 256) < gender_Ratio and gender_Ratio != 255 and (gender is None or gender.lower() != "genderless"):
         PID1 = int(bin(PID)[2:].zfill(32)[:16], 2)
         PID2 = int(bin(PID)[2:].zfill(32)[16:], 2)
         PID_XOR = PID1 ^ PID2
@@ -206,7 +206,7 @@ def PID_Search(PID, gender = None, ability = None, nature = None, gender_Ratio =
         if wurmple_Path > 4:
             evolution = "cascoon"
         return False, (hex(PID)[2:].zfill(8), "Female", (PID % 2), natures_List[(PID % 25)], temp_XOR, Unown_Alphabet[Unown_Letter], evolution, PID2, data_Structures[(PID % 24)], (int(TID_Full, 16) % PID))
-    if gender.lower() == "genderless" or gender_Ratio == 255:
+    if (gender is not None and gender.lower() == "genderless") or gender_Ratio == 255:
         PID1 = int(bin(PID)[2:].zfill(32)[:16], 2)
         PID2 = int(bin(PID)[2:].zfill(32)[16:], 2)
         PID_XOR = PID1 ^ PID2

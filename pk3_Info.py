@@ -14,15 +14,25 @@ def pk3_Info(pokemon, pokemon_ID, OT_Name = None, trainer_ID = None, trainer_SID
     if PID_Data == None or (PID_Data[1])[0] == None:
         print ("Invalid \"pokemon_ID\" int/str:", pokemon_ID)
         error = 1
-    if OT_Name == None:
-        config = open("config.txt", "r")
-        for line in config:
-            line = line.split("=")
-            if line[0].strip() == "Name":
-                try:
-                    OT_Name = line[1].strip()
-                except:
-                    print ("Invalid Trainer Name of", line[1].strip())
+    if OT_Name == None or trainer_ID == None or trainer_SID == None:
+        with open("config.txt", "r") as config:
+            for line in config:
+                line = line.split("=")
+                if line[0].strip() == "Name" and OT_Name == None:
+                    try:
+                        OT_Name = line[1].strip()
+                    except:
+                        print ("Invalid Trainer Name of", line[1].strip())
+                if line[0].strip() == "Trainer ID" and trainer_ID == None:
+                    try:
+                        trainer_ID = int(line[1].strip())
+                    except:
+                        print ("Invalid Trainer ID of", line[1].strip())
+                if line[0].strip() == "Secret ID" and trainer_SID == None:
+                    try:
+                        trainer_SID = int(line[1].strip())
+                    except:
+                        print ("Invalid Secret ID of", line[1].strip())
     if OT_Name == None:
         print ("config.txt requires line: 'Name = YourNameHere'")
         error = 1
@@ -30,33 +40,15 @@ def pk3_Info(pokemon, pokemon_ID, OT_Name = None, trainer_ID = None, trainer_SID
         print ("Invalid \"OT_Name\" str:", OT_Name)
         error = 1
     if trainer_ID == None:
-        config = open("config.txt", "r")
-        for line in config:
-            line = line.split("=")
-            if line[0].strip() == "Trainer ID":
-                try:
-                    trainer_ID = int(line[1].strip())
-                except:
-                    print ("Invalid Trainer ID of", line[1].strip())
-    if trainer_ID == None:
         print ("config.txt requires line: 'Trainer ID = #####'")
         error = 1
     if trainer_ID != None and type(trainer_ID) != int:
         print ("Invalid \"trainer_ID\" int:", trainer_ID)
     if trainer_SID == None:
-        config = open("config.txt", "r")
-        for line in config:
-            line = line.split("=")
-            if line[0].strip() == "Secret ID":
-                try:
-                    trainer_SID = int(line[1].strip())
-                except:
-                    print ("Invalid Secret ID of", line[1].strip())
-    if trainer_SID == None:
         print ("config.txt requires line: 'Secret ID = #####'")
         error = 1
     if trainer_SID != None and type(trainer_SID) != int:
-        print ("Invalid \"trainer_SID\" int:", trainer_ID)
+        print ("Invalid \"trainer_SID\" int:", trainer_SID)
     lang = language.lower()
     if lang not in accepted_languages:
         print ("Invalid \"language\" string:", language)
@@ -95,7 +87,7 @@ def pk3_Info(pokemon, pokemon_ID, OT_Name = None, trainer_ID = None, trainer_SID
     PID_Little = str()
     for PID_Byte in (int((PID_Data[1])[0], 16).to_bytes(4, 'little')):
         PID_Little = PID_Little + hex(PID_Byte)[2:].zfill(2)
-    TID_Full = hex(trainer_SID)[2:] + hex(trainer_ID)[2:]
+    TID_Full = hex(trainer_SID)[2:].zfill(4) + hex(trainer_ID)[2:].zfill(4)
     TID_Little = str()
     for TID_Byte in (int(TID_Full, 16).to_bytes(4, 'little')):
         TID_Little = TID_Little + hex(TID_Byte)[2:].zfill(2)
