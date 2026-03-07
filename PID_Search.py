@@ -35,7 +35,7 @@ def PID_Search(PID, gender = None, ability = None, nature = None, gender_Ratio =
         print ("Invalid \"ability\" int:", ability)
         error = 1
     if nature != None and nature.lower() not in natures_List:
-        print ("Invaid \"nature\" string:", nature)
+        print ("Invalid \"nature\" string:", nature)
         error = 1
     if gender_Ratio != None and type(gender_Ratio) != int:
         print ("Invalid \"gender_Ratio\" int:", gender_Ratio)
@@ -128,7 +128,7 @@ def PID_Search(PID, gender = None, ability = None, nature = None, gender_Ratio =
                             evolution = "cascoon"
                         if wurmple != None and wurmple.lower() == evolution or wurmple == None:
                             if mirage == PID2 or mirage == None:
-                                return True, (hex(PID)[2:].zfill(8), "Male", (PID % 2), natures_List[(PID % 25)], temp_XOR, Unown_Alphabet[Unown_Letter], evolution, PID2, data_Structures[(PID % 24)], (int(TID_Full, 16) % PID))
+                                return True, (hex(PID)[2:].zfill(8), "Male", (PID % 2), natures_List[(PID % 25)], temp_XOR, Unown_Alphabet[Unown_Letter], evolution, PID2, data_Structures[(PID % 24)], (int(TID_Full, 16) ^ PID))
     if gender != None and gender.lower() == "female" and (PID % 256) < gender_Ratio and gender_Ratio != 255 or gender == None and (PID % 256) < gender_Ratio and gender_Ratio != 255:
         if ability == (PID % 2) or ability == None:
             if nature != None and nature.lower() == natures_List[(PID % 25)] or nature == None:
@@ -150,7 +150,7 @@ def PID_Search(PID, gender = None, ability = None, nature = None, gender_Ratio =
                             evolution = "cascoon"
                         if wurmple != None and wurmple.lower() == evolution or wurmple == None:
                             if mirage == PID2 or mirage == None:
-                                return True, (hex(PID)[2:].zfill(8), "Female", (PID % 2), natures_List[(PID % 25)], temp_XOR, Unown_Alphabet[Unown_Letter], evolution, PID2, data_Structures[(PID % 24)], (int(TID_Full, 16) % PID))
+                                return True, (hex(PID)[2:].zfill(8), "Female", (PID % 2), natures_List[(PID % 25)], temp_XOR, Unown_Alphabet[Unown_Letter], evolution, PID2, data_Structures[(PID % 24)], (int(TID_Full, 16) ^ PID))
     if gender != None and gender.lower() == "genderless" or gender_Ratio == 255:
         if ability == (PID % 2) or ability == None:
             if nature != None and nature.lower() == natures_List[(PID % 25)] or nature == None:
@@ -172,7 +172,7 @@ def PID_Search(PID, gender = None, ability = None, nature = None, gender_Ratio =
                             evolution = "cascoon"
                         if wurmple != None and wurmple.lower() == evolution or wurmple == None:
                             if mirage == PID2 or mirage == None:
-                                return True, (hex(PID)[2:].zfill(8), "Genderless", (PID % 2), natures_List[(PID % 25)], temp_XOR, Unown_Alphabet[Unown_Letter], evolution, PID2, data_Structures[(PID % 24)], (int(TID_Full, 16) % PID))
+                                return True, (hex(PID)[2:].zfill(8), "Genderless", (PID % 2), natures_List[(PID % 25)], temp_XOR, Unown_Alphabet[Unown_Letter], evolution, PID2, data_Structures[(PID % 24)], (int(TID_Full, 16) ^ PID))
     # Supplied PID did not match supplied filters, return false + details
     if (PID % 256) >= gender_Ratio and gender_Ratio != 255 and (gender is None or gender.lower() != "genderless"):
         PID1 = int(bin(PID)[2:].zfill(32)[:16], 2)
@@ -189,7 +189,7 @@ def PID_Search(PID, gender = None, ability = None, nature = None, gender_Ratio =
             evolution = "silcoon"
         if wurmple_Path > 4:
             evolution = "cascoon"
-        return False, (hex(PID)[2:].zfill(8), "Male", (PID % 2), natures_List[(PID % 25)], temp_XOR, Unown_Alphabet[Unown_Letter], evolution, PID2, data_Structures[(PID % 24)], (int(TID_Full, 16) % PID))
+        return False, (hex(PID)[2:].zfill(8), "Male", (PID % 2), natures_List[(PID % 25)], temp_XOR, Unown_Alphabet[Unown_Letter], evolution, PID2, data_Structures[(PID % 24)], (int(TID_Full, 16) ^ PID))
     if (PID % 256) < gender_Ratio and gender_Ratio != 255 and (gender is None or gender.lower() != "genderless"):
         PID1 = int(bin(PID)[2:].zfill(32)[:16], 2)
         PID2 = int(bin(PID)[2:].zfill(32)[16:], 2)
@@ -205,7 +205,7 @@ def PID_Search(PID, gender = None, ability = None, nature = None, gender_Ratio =
             evolution = "silcoon"
         if wurmple_Path > 4:
             evolution = "cascoon"
-        return False, (hex(PID)[2:].zfill(8), "Female", (PID % 2), natures_List[(PID % 25)], temp_XOR, Unown_Alphabet[Unown_Letter], evolution, PID2, data_Structures[(PID % 24)], (int(TID_Full, 16) % PID))
+        return False, (hex(PID)[2:].zfill(8), "Female", (PID % 2), natures_List[(PID % 25)], temp_XOR, Unown_Alphabet[Unown_Letter], evolution, PID2, data_Structures[(PID % 24)], (int(TID_Full, 16) ^ PID))
     if (gender is not None and gender.lower() == "genderless") or gender_Ratio == 255:
         PID1 = int(bin(PID)[2:].zfill(32)[:16], 2)
         PID2 = int(bin(PID)[2:].zfill(32)[16:], 2)
@@ -221,4 +221,4 @@ def PID_Search(PID, gender = None, ability = None, nature = None, gender_Ratio =
             evolution = "silcoon"
         if wurmple_Path > 4:
             evolution = "cascoon"
-        return False, (hex(PID)[2:].zfill(8), "Genderless", (PID % 2), natures_List[(PID % 25)], temp_XOR, Unown_Alphabet[Unown_Letter], evolution, PID2, data_Structures[(PID % 24)], (int(TID_Full, 16) % PID))
+        return False, (hex(PID)[2:].zfill(8), "Genderless", (PID % 2), natures_List[(PID % 25)], temp_XOR, Unown_Alphabet[Unown_Letter], evolution, PID2, data_Structures[(PID % 24)], (int(TID_Full, 16) ^ PID))
